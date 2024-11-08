@@ -84,7 +84,9 @@ names.push(3);
 let array: (string | boolean)[] = ["apple", true, "pear", false];
 array.pop;
 
-// Challenge 3(array in types)
+/*
+Challenge 3(array in types)
+ */
 
 // - Create an array temperatures of type number[] and assign it some values. Then, try to add a string value to it.
 let temp: number[] = [20, 25, 30];
@@ -114,5 +116,79 @@ let pen = { title: "book", cost: 10 };
 let noteBook = { title: "notebook" };
 
 let items: { title: string; cost?: number }[] = [book, pen, noteBook];
-
+items.pop();
 // the ? makes the cost to be opptional so we dont get an error as notebook doesnt have a cost
+
+/*
+ Challenge 4 object fundermentals
+ */
+
+/* Create an object bike of type { brand: string, year: number } and assign it some values. Then, try to assign a string to the year property. */
+
+// let bike: { brand: string; year: number } = { brand: "suzuki", year: "2010" };
+let bike: { brand: string; year: number } = { brand: "suzuki", year: 2010 };
+
+/* - Create an object laptop of type { brand: string, year: number } and try to assign an object with missing year property to it.*/
+let laptop: { brand: string; year?: number } = { brand: "dell" };
+
+/* - Create an array products of type { title: string, price?: number }[] and assign it some values. Then, try to add an object with a price property of type string to it.*/
+
+// let products:{title:string,price?:number}[]=[{title:"macbook",price:1300},{title:"iphone12",price:"1000"}]
+let products: { title: string; price?: number }[] = [
+  { title: "macbook", price: 1300 },
+  { title: "iphone12", price: 1000 },
+];
+
+/* Function in Typescript */
+function sayHi(name: string) {
+  console.log(`hello there ${name.toUpperCase()}`);
+}
+sayHi("john");
+// sayHi(3)
+
+/* FUnction return */
+function calculateDiscount(price: number): number {
+  const hasDiscount = true;
+
+  if (hasDiscount) {
+    return price;
+    // because we added the number type after the bracket, we're expeting the price to be a number and to return a number,so the fuction can no longer accept a sting which will raise a type error
+    // return "Discount applied"
+  }
+  return price * 0.9;
+}
+
+const finalPrice = calculateDiscount(200);
+
+/* Challenge 5 Function */
+// - Create a new array of names.
+// let name:{personName:string}[]=[{personName:"bello"},{personName:"bimbo"},{personName:"daniel"}]
+const humanName: string[] = ["bimbo", "daniel", "david"];
+// - Write a new function that checks if a name is in your array. This function should take a name as a parameter and return a boolean.
+function validName(name: string): boolean {
+  return humanName.includes(name);
+}
+// - Use this function to check if various names are in your array and log the results.
+let ranName = "bio";
+if (validName(ranName)) {
+  console.log(`${ranName} is there`);
+} else {
+  console.log(`${ranName} is not there`);
+}
+
+/* Optional and Default parameter in functions */
+function calPrice(price: number, discountedItem?: number): number {
+  return price - (discountedItem || 0);
+  // this lets us calculate price for people that donet have discount, see below
+}
+
+calPrice(100, 20);
+calPrice(100);
+
+/* Another way to use optionl paramater in funtions*/
+// we can do it be asisgn it a default valyu like 0
+function calFinalScore(score: number, penScore: number = 0): number {
+  return score - penScore;
+}
+calFinalScore(100, 20);
+calFinalScore(100);
