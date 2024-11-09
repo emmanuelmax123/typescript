@@ -186,9 +186,23 @@ calPrice(100, 20);
 calPrice(100);
 
 /* Another way to use optionl paramater in funtions*/
-// we can do it be asisgn it a default valyu like 0
+// we can do it be asisgn it a default value like 0, if it doenst have penscore
 function calFinalScore(score: number, penScore: number = 0): number {
   return score - penScore;
 }
 calFinalScore(100, 20);
 calFinalScore(100);
+
+/* Laerning Rest with Ts */
+function sum(message: string, ...numbers: number[]): string {
+  const doubled = numbers.map((num) => num * 2);
+  console.log(doubled);
+
+  let total = numbers.reduce((previous, current) => {
+    return previous + current;
+  }, 0);
+  return `${message} ${total}`;
+}
+
+let result = sum("the total is", 1, 2, 3, 4, 5);
+console.log(result);
