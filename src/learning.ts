@@ -206,3 +206,39 @@ function sum(message: string, ...numbers: number[]): string {
 
 let result = sum("the total is", 1, 2, 3, 4, 5);
 console.log(result);
+
+/* Laerning Void with Ts */
+function logMessage(message: string) {
+  console.log(message);
+}
+logMessage("hello, Ts");
+
+/* Using union types as fuction parameter(type gaurd)*/
+
+//  Challenge
+
+// Your task is to create a function named processInput that accepts a parameter of a union type string | number. The function should behave as follows:
+// - If the input is of type number, the function should multiply the number by 2 and log the result to the console.
+// - If the input is of type string, the function should convert the string to uppercase and log the result to the console.
+
+function processInput(input: string | number) {
+  if (typeof input === "number") {
+    console.log(input * 2);
+  } else {
+    console.log(input.toLowerCase);
+  }
+}
+
+processInput(10);
+processInput("hello");
+
+/* Using object as parameter */
+function createEmployed({ id }: { id: number }): {
+  id: number;
+  isActive: boolean;
+} {
+  return { id, isActive: id % 2 === 0 };
+}
+const first = createEmployed({ id: 1 });
+const sec = createEmployed({ id: 2 });
+console.log(first, sec);
