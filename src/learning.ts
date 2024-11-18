@@ -242,3 +242,15 @@ function createEmployed({ id }: { id: number }): {
 const first = createEmployed({ id: 1 });
 const sec = createEmployed({ id: 2 });
 console.log(first, sec);
+
+// alternative approach
+function createStudent(student: { id: number; name: string }): void {
+  console.log(`welcome back ${student.name.toLowerCase()},`);
+}
+
+const newStudent = {
+  id: 12334,
+  name: "kola",
+};
+// We reffer the object type in the parameter as student, unlike before where the object and type where directly set in the parameter
+createStudent(newStudent);
