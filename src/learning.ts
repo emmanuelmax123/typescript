@@ -215,7 +215,7 @@ logMessage("hello, Ts");
 
 /* Using union types as fuction parameter(type gaurd)*/
 
-//  Challenge
+//  Challenge 6 Union Types
 
 // Your task is to create a function named processInput that accepts a parameter of a union type string | number. The function should behave as follows:
 // - If the input is of type number, the function should multiply the number by 2 and log the result to the console.
@@ -252,5 +252,53 @@ const newStudent = {
   id: 12334,
   name: "kola",
 };
-// We reffer the object type in the parameter as student, unlike before where the object and type where directly set in the parameter
+// We reffer the object type in the parameter as student, unlike before where the object and type where inline(directly set in the parameter)
 createStudent(newStudent);
+
+/* NOTE
+ if we were to add a new proprty (email) to the object, typescript wouldn't flag an error because we're just refrencing the object, the error will only happen if we call the object inline 
+
+ const newStudent = {
+//   id: 12334,
+//   name: "kola",
+//   email: 'kolaw@gmail.com' 
+// };
+
+there will be an error here because it's inline
+// createStudent({id:1, name:'kola',email:"kola@gmail.com"});
+
+*/
+
+/*
+ Challenge 7 Function 
+
+Your task is to create a function named processData that accepts two parameters:
+
+- The first parameter, input, should be a union type that can be either a string or a number.
+- The second parameter, config, should be an object with a reverse property of type boolean, by default it "reverse" should be false
+
+The function should behave as follows:
+
+- If input is of type number, the function should return the square of the number.
+- If input is of type string, the function should return the string in uppercase.
+- If the reverse property on the config object is true, and input is a string, the function should return the reversed string in uppercase.
+*/
+
+function processData(
+  input: string | number,
+  config: { reverse: boolean } = { reverse: false }
+  // we set the default result for the boolean to false so it will only be active when we wet it to true
+): string | number {
+  if (typeof input === "number") {
+    return input * input;
+  } else {
+    return config.reverse
+      ? // we used a  ternary operator(?) which is like a if-else statemenet
+        input.toUpperCase().split("").reverse().join("")
+      : //if reverse is set to true the above happens else the below happens
+        input.toUpperCase();
+  }
+}
+console.log(processData(10));
+console.log(processData("hello"));
+console.log(processData("hello", { reverse: true }));
