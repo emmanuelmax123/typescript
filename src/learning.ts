@@ -286,7 +286,7 @@ The function should behave as follows:
 
 function processData(
   input: string | number,
-  config: { reverse: boolean } = { reverse: false }
+  config: { reverse: boolean } = { reverse: false } //this is a default value
   // we set the default result for the boolean to false so it will only be active when we wet it to true
 ): string | number {
   if (typeof input === "number") {
@@ -302,3 +302,77 @@ function processData(
 console.log(processData(10));
 console.log(processData("hello"));
 console.log(processData("hello", { reverse: true }));
+
+// Type alias
+type user = { id: number; name: string; isActive: boolean };
+
+const john: user = {
+  id: 1,
+  name: "john",
+  isActive: true,
+};
+const susan: user = {
+  id: 1,
+  name: "susan",
+  isActive: false,
+};
+
+function createUser(user: user): user {
+  console.log(`Hello there ${user.name.toUpperCase()} !!!`);
+
+  return user;
+}
+
+type StringOrNumber = string | number; // Type alias for string | number
+
+let value: StringOrNumber;
+value = "hello";
+value = 123;
+
+type Theme = "light" | "dark"; // Type alias for theme
+
+let theme: Theme;
+theme = "light"; // This is valid
+theme = "dark"; // This is also valid
+
+// Function that accepts the Theme type alias
+function setTheme(t: Theme) {
+  theme = t;
+}
+
+setTheme("dark"); // This will set the theme to 'dark'
+
+/* challenge 8 type allias
+- Define the Employee type: Create a type Employee with properties id (number), name (string), and department (string).
+
+- Define the Manager type: Create a type Manager with properties id (number), name (string), and employees (an array of Employee).
+
+- Create a Union Type: Define a type Staff that is a union of Employee and Manager.
+
+- Create the printStaffDetails function: This function should accept a parameter of type Staff. 
+Inside the function, use a type guard to check if the 'employees' property exists in the passed object. 
+If it does, print a message indicating that the person is a manager and the number of employees they manage. 
+If it doesn't, print a message indicating that the person is an employee and the department they belong to.
+
+- Create Employee and Manager objects: Create two Employee objects. One named alice and second named steve. Also create a Manager object named bob who manages alice and steve.
+
+- Test the function: Call the printStaffDetails function with alice and bob as arguments and verify the output.
+*/
+type Employee = { id: number; name: string; department: string };
+type Manager = { id: number; name: string; employees: Employee[] };
+type Staff = Employee | Manager;
+function printStaffDetails(t: Staff) {
+  if ("employees" in t) {
+    console.log(`${t.name} is a manager and he manages ${t.employees.length}`);
+  } else {
+    console.log(
+      `${t.name} is and employee and works at deprtment ${t.department}`
+    );
+  }
+}
+const steve: Employee = { id: 2, name: "steve", department: "e-comm" };
+const alice: Employee = { id: 1, name: "alice", department: "sales" };
+const bob: Manager = { id: 3, name: "Bob", employees: [alice, steve] };
+printStaffDetails(alice);
+printStaffDetails(bob);
+printStaffDetails(alice);
