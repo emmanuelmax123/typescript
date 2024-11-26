@@ -376,3 +376,6 @@ const bob: Manager = { id: 3, name: "Bob", employees: [alice, steve] };
 printStaffDetails(alice);
 printStaffDetails(bob);
 printStaffDetails(alice);
+// i need to do 8 hrs tomorrow to be up to date
+type Book = { id: number; name: string; price: number };
+type DiscountedBook = Book & { discount: number };
